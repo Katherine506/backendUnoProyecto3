@@ -13,6 +13,8 @@ public class Product {
     private String description;
     private double price;
     private int stock;
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     private Category category;
 
     public Long getId() {
@@ -59,8 +61,7 @@ public class Product {
         return category;
     }
 
-    public Category setCategory(Category category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
-
 }
