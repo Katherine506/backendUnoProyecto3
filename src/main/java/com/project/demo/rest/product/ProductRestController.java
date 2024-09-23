@@ -22,7 +22,7 @@ public class ProductRestController {
         return productRepository.findAll();
     }
 
-    //El registro de producto únicamente podrá realizarlo el usuario con rol SUPER-ADMIN-ROLE
+    //La actualizacion del  producto únicamente podrá realizarlo el usuario con rol SUPER-ADMIN-ROLE
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public Product updateProduct(@PathVariable Long id, @RequestBody Product product) {
@@ -41,7 +41,7 @@ public class ProductRestController {
                 });
     }
 
-    //La actualizacion de producto únicamente podrá realizarlo el usuario con rol SUPER-ADMIN-ROLE
+    //El registro de producto únicamente podrá realizarlo el usuario con rol SUPER-ADMIN-ROLE
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public Product addProduct(@RequestBody Product product) {

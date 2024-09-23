@@ -21,7 +21,7 @@ public class CategoryRestController {
         return categoryRepository.findAll();
     }
 
-    //El registro de categoría únicamente podrá realizarlo el usuario con rol SUPER-ADMIN-ROLE
+    //La actualizacion de categoría únicamente podrá realizarlo el usuario con rol SUPER-ADMIN-ROLE
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public Category updateCategory(@PathVariable Long id, @RequestBody Category category) {
@@ -37,7 +37,7 @@ public class CategoryRestController {
                 });
     }
 
-    //La actualizacion de categoría únicamente podrá realizarlo el usuario con rol SUPER-ADMIN-ROLE
+    //El registro de categoría únicamente podrá realizarlo el usuario con rol SUPER-ADMIN-ROLE
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public Category addCategory(@RequestBody Category category) {
