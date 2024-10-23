@@ -1,27 +1,39 @@
 package com.project.demo.logic.entity.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.project.demo.logic.entity.category.Category;
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 
 @Table(name = "product")
 @Entity
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private long id;
+
     private String name;
     private String description;
-    private double price;
-    private int stock;
-    @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+    private BigDecimal price;
+    private Integer stockQuantity;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id", nullable = false)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonIgnoreProperties({"description", "products"})
     private Category category;
 
-    public Long getId() {
+    public Product() {
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -41,20 +53,20 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public int getStock() {
-        return stock;
+    public Integer getStockQuantity() {
+        return stockQuantity;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setStockQuantity(Integer stock) {
+        this.stockQuantity = stock;
     }
 
     public Category getCategory() {
@@ -64,4 +76,6 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+
 }
